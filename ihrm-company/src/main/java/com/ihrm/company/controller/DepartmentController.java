@@ -8,6 +8,10 @@ import com.ihrm.company.service.DepartmentService;
 import com.ihrm.domain.company.Company;
 import com.ihrm.domain.company.Department;
 import com.ihrm.domain.company.DeptListResult;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +19,9 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/company/department/")
+@RequestMapping(value = "/company/departments/")
 public class DepartmentController extends BaseController {
+    private static Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
     @Autowired
     private DepartmentService departmentService;
@@ -41,8 +46,9 @@ public class DepartmentController extends BaseController {
      * 查询部门信息
      * @return
      */
-    @RequestMapping(value = "/findAllDepartment",method = RequestMethod.POST)
+    @RequestMapping(value = "/findAllDepartment",method = RequestMethod.GET)
     public Result findAllDepartment(){
+        logger.info("进入该方法-------》{}后，得到的companyId是{}","findAllDepartment",companyId);
         //设置保存企业id 先固定值1
         Company company = companyService.findById(companyId);
         //保存
@@ -79,7 +85,7 @@ public class DepartmentController extends BaseController {
     }
 
     /**
-     * 根据id查询部门信息
+     * 根据id删除部门信息
      * @return
      */
     @RequestMapping(value = "deleteByIdDepartment/{id}",method = RequestMethod.DELETE)

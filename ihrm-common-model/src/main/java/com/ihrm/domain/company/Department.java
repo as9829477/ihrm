@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +23,7 @@ public class Department implements Serializable {
     /**
      * 父级ID
      */
+    @Column(name = "parent_id") // 保证与数据库字段能映射
     private String pid;
     /**
      * 企业ID
