@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/company")
+@RequestMapping(value = "/company/department/")
 public class DepartmentController extends BaseController {
 
     @Autowired
@@ -29,8 +29,8 @@ public class DepartmentController extends BaseController {
      * @param department
      * @return
      */
-    @RequestMapping(value = "/department",method = RequestMethod.POST)
-    public Result sava(Department department ){
+    @RequestMapping(value = "/saveDepartment",method = RequestMethod.POST)
+    public Result saveDepartment(@RequestBody Department department ){
         //保存
         department.setCompanyId(companyId);
         departmentService.saveDepartment(department);
@@ -41,8 +41,8 @@ public class DepartmentController extends BaseController {
      * 查询部门信息
      * @return
      */
-    @RequestMapping(value = "/department",method = RequestMethod.POST)
-    public Result findAll( ){
+    @RequestMapping(value = "/findAllDepartment",method = RequestMethod.POST)
+    public Result findAllDepartment(){
         //设置保存企业id 先固定值1
         Company company = companyService.findById(companyId);
         //保存
@@ -57,8 +57,8 @@ public class DepartmentController extends BaseController {
      * 根据id查询部门信息
      * @return
      */
-    @RequestMapping(value = "/department/${id}",method = RequestMethod.GET)
-    public Result findById(@PathVariable(value = "id") String id){
+    @RequestMapping(value = "findByIdDepartment/{id}",method = RequestMethod.GET)
+    public Result findByIdDepartment(@PathVariable(value = "id") String id){
 
         Department buIdDepartment = departmentService.findBuIdDepartment(id);
 
@@ -69,8 +69,8 @@ public class DepartmentController extends BaseController {
      * 根据id修改部门信息
      * @return
      */
-    @RequestMapping(value = "/department/${id}",method = RequestMethod.PUT)
-    public Result updateByIdDepartment(@PathVariable(value = "id") String id,Department department){
+    @RequestMapping(value = "updateByIdDepartment/{id}",method = RequestMethod.PUT)
+    public Result updateByIdDepartment(@PathVariable(value = "id") String id,@RequestBody Department department){
 
         department.setId(id);
         departmentService.updateDepartment(department);
@@ -82,7 +82,7 @@ public class DepartmentController extends BaseController {
      * 根据id查询部门信息
      * @return
      */
-    @RequestMapping(value = "/department/${id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "deleteByIdDepartment/{id}",method = RequestMethod.DELETE)
     public Result deleteByIdDepartment(@PathVariable(value = "id") String id){
 
          departmentService.deleteByIdDepartment(id);

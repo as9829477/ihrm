@@ -20,14 +20,14 @@ import java.util.List;
  */
 @CrossOrigin  //解决跨域问题
 @RestController
-@RequestMapping(value = "/company")
+@RequestMapping(value = "/company/")
 public class CompanyController {
 
     @Autowired
     private CompanyService companyService;
 
     //保存企业
-    @RequestMapping(value = "",method = RequestMethod.POST)
+    @RequestMapping(value = "saveCompany",method = RequestMethod.POST)
     public Result saveCompany(@RequestBody  Company company){
         companyService.saveCompany(company);
         return new Result(ResultCode.SUCCESS);
@@ -41,7 +41,7 @@ public class CompanyController {
      * @PathVariable 绑定参数
      *
      */
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "updateCompany/{id}",method = RequestMethod.PUT)
     public Result updateCompany(@PathVariable(value = "id") String id, @RequestBody Company company){
         company.setId(id);
         companyService.updateCompany(company);
@@ -49,15 +49,15 @@ public class CompanyController {
     }
 
     //根据id删除企业
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "deleteCompany/{id}",method = RequestMethod.DELETE)
     public Result deleteCompany(@PathVariable(value = "id")String id){
         companyService.deleteId(id);
         return new Result(ResultCode.SUCCESS);
     }
 
     //根据id查询企业
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Result findById(@PathVariable(value ="id")String id){
+    @RequestMapping(value = "findByIdCompany/{id}",method = RequestMethod.GET)
+    public Result findByIdCompany(@PathVariable(value ="id")String id){
         Company company = companyService.findById(id);
         Result result = new Result(ResultCode.SUCCESS);
         result.setData(company);
@@ -65,8 +65,8 @@ public class CompanyController {
     }
 
     //查询全部企业列表
-    @RequestMapping(value = "",method = RequestMethod.GET)
-    public Result findAll(){
+    @RequestMapping(value = "findAllCompany",method = RequestMethod.GET)
+    public Result findAllCompany(){
         List<Company> list = companyService.findAll();
         Result result = new Result(ResultCode.SUCCESS);
         result.setData(list);
