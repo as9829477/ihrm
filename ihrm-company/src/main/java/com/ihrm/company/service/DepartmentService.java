@@ -24,7 +24,7 @@ public interface DepartmentService {
     /**
      * 查询全部部门列表
      */
-    public List<Department> findAllDepartment();
+    public List<Department> findAllDepartment(String companyId);
 
     /**
      * 根据id删除部门
